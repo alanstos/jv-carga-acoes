@@ -126,5 +126,103 @@ public class AcaoDao {
 			throw new RuntimeException("erro ao buscar fechamento minimo", e);
 		}
 	}
+	
+	public List<Acao> findRetornoMaximo(){
+		
+		String sql = "select ac.* from acao ac inner join"  
+			+ " ( select  nome, max(valor_retorno) as valor from acao  group by nome) x "
+			+ " on ac.nome = x.nome and ac.valor_retorno = x.valor ";
+		
+		try {
+			PreparedStatement ps = ConnectionFactory.getInstance().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			List<Acao> acoes = new ArrayList<Acao>();
+			Acao acao;
+			while(rs.next()){
+				acao = new Acao();
+				acao.setNome(rs.getString("nome"));
+				Calendar cl = Calendar.getInstance();
+				cl.setTime( rs.getDate("data") );
+				acao.setData(  cl.getTime() );
+				acao.setValorAbertura(rs.getDouble("valor_abertura"));
+				acao.setValorFechamento(rs.getDouble("valor_fechamento"));
+				acao.setValorRetorno(rs.getDouble("valor_retorno"));
+				acao.setVolume(rs.getDouble("volume"));
+				acoes.add(acao);
+			}
+			
+			rs.close();
+			ps.close();
+			
+			return acoes;
+			
+		} catch (Exception e) {
+			throw new RuntimeException("erro ao buscar retorno maximo",e);
+		}		
+	}
+	
+	public List<Acao> findRetornoMinimo(){
+		
+		String sql = "select ac.* from acao ac inner join"  
+			+ " ( select  nome, min(valor_retorno) as valor from acao  group by nome) x "
+			+ " on ac.nome = x.nome and ac.valor_retorno = x.valor ";
+		
+		try {
+			PreparedStatement ps = ConnectionFactory.getInstance().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			List<Acao> acoes = new ArrayList<Acao>();
+			Acao acao;
+			while(rs.next()){
+				acao = new Acao();
+				acao.setNome(rs.getString("nome"));
+				Calendar cl = Calendar.getInstance();
+				cl.setTime( rs.getDate("data") );
+				acao.setData(  cl.getTime() );
+				acao.setValorAbertura(rs.getDouble("valor_abertura"));
+				acao.setValorFechamento(rs.getDouble("valor_fechamento"));
+				acao.setValorRetorno(rs.getDouble("valor_retorno"));
+				acao.setVolume(rs.getDouble("volume"));
+				acoes.add(acao);
+			}
+			
+			rs.close();
+			ps.close();
+			
+			return acoes;
+			
+		} catch (Exception e) {
+			throw new RuntimeException("erro ao buscar retorno minimo",e);
+		}		
+	}	
+	
+	
+	public List<Acao> findVolumeMedio(){
+		
+		String sql = " select nome, avg(volume) as volume from acao where volume <> 0 group by nome ";  
+		
+		try {
+			PreparedStatement ps = ConnectionFactory.getInstance().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			List<Acao> acoes = new ArrayList<Acao>();
+			Acao acao;
+			while(rs.next()){
+				acao = new Acao();
+				acao.setNome(rs.getString("nome"));
+				acao.setVolume(rs.getDouble("volume"));
+				acoes.add(acao);
+			}
+			
+			rs.close();
+			ps.close();
+			
+			return acoes;
+			
+		} catch (Exception e) {
+			throw new RuntimeException("erro ao buscar volume medio.",e);
+		}		
+	}	
 
 }

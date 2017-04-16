@@ -28,7 +28,7 @@ public class AcaoDaoTest {
 	}
 	
 	@Test
-	@Ignore
+	//@Ignore
 	public void maxFechamentoTest(){
 		System.out.println("valor maximo");
 		List<Acao> fechamentoMaximo = acaoDao.findFechamentoMaximo();
@@ -50,14 +50,47 @@ public class AcaoDaoTest {
 		}
 	}	
 	
+	@Test
+	public void maxRetornoTest(){
+		System.out.println("valor retorno maximo");
+		
+		List<Acao> retornoMax = acaoDao.findRetornoMaximo();
+		
+		for (Acao acao : retornoMax) {
+			System.out.println(acao);
+		}
+	}
+	
+	@Test
+	public void minRetornoTest(){
+		System.out.println("valor retorno minimo");
+		
+		List<Acao> retornoMin = acaoDao.findRetornoMinimo();
+		
+		for (Acao acao : retornoMin) {
+			System.out.println(acao);
+		}
+	}	
+	
+	@Test
+	public void volumeMedioTest(){
+		System.out.println("volume medio");
+		
+		List<Acao> volumeMedio = acaoDao.findVolumeMedio();
+		
+		for (Acao acao : volumeMedio) {
+			System.out.println(acao);
+		}
+	}	
+	
 	private Acao getNovaAcao(){
 		Acao acao = new Acao();
 		acao.setNome("ABCX");
 		acao.setData(new Date());
-		acao.setValorAbertura(100.0);
-		acao.setValorFechamento(100.0);
-		acao.setValorRetorno(1.0);
-		acao.setVolume(1000.1);
+		acao.setValorAbertura(300);
+		acao.setValorFechamento(300);
+		acao.setValorRetorno(0);
+		acao.setVolume(0);
 		return acao;
 	}
 
