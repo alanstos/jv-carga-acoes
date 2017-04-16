@@ -2,20 +2,14 @@ package br.com.jv.carga.acoes.model;
 
 import java.util.Date;
 
-import com.opencsv.bean.CsvBindByName;
+import br.com.jv.carga.acoes.util.DataUtil;
 
 public class Acao {
 
-	@CsvBindByName(column = "Acao")
 	private String nome;
 
-	@CsvBindByName(column = "Data")
-	private String dataFechamento;
-
-	@CsvBindByName(column = "Close")
 	private double valorFechamento;
 
-	@CsvBindByName(column = "Volume")
 	private double volume;
 	
 	private double valorAbertura;
@@ -30,14 +24,6 @@ public class Acao {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getDataFechamento() {
-		return dataFechamento;
-	}
-
-	public void setDataFechamento(String dataFechamento) {
-		this.dataFechamento = dataFechamento;
 	}
 
 	public double getVolume() {
@@ -84,8 +70,10 @@ public class Acao {
 
 	@Override
 	public String toString() {
-		return "Acao [nome=" + nome + ", dataFechamento=" + dataFechamento + ", valorFechamento=" + valorFechamento + ", volume=" + volume
-				+ "]";
+		return "Acao [nome=" + nome + ", valorFechamento=" + valorFechamento + ", volume=" + volume + ", valorAbertura="
+				+ valorAbertura + ", valorRetorno=" + valorRetorno + ", data=" + DataUtil.convertDateToString(data) + "]";
 	}
+
+
 
 }
