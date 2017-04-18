@@ -1,5 +1,19 @@
 # jv-carga-acoes
 
+# Script
+CREATE TABLE `carga-acoes`.`acao` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  `data` DATE NULL,
+  `valor_fechamento` DOUBLE NULL,
+  `valor_abertura` DOUBLE NULL,
+  `valor_retorno` DOUBLE NULL,
+  `volume` DOUBLE NULL,
+  PRIMARY KEY (`id`));
+  
+# Resultado
+
+
 1 - 
 
 Acao [nome=OGXP3, valorFechamento=23.27, data=15/10/2010]
