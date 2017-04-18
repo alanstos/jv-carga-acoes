@@ -1,4 +1,4 @@
-package br.com.jv.carga.acoes;
+package br.com.jv.carga.acoes.service;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

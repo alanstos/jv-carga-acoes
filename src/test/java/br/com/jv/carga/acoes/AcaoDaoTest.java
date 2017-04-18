@@ -28,7 +28,7 @@ public class AcaoDaoTest {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void maxFechamentoTest(){
 		System.out.println("valor maximo");
 		List<Acao> fechamentoMaximo = acaoDao.findFechamentoMaximo();
@@ -39,7 +39,7 @@ public class AcaoDaoTest {
 	}
 	
 	@Test
-	//@Ignore
+	@Ignore
 	public void minFechamentoTest(){
 		System.out.println("valor minimo");
 		
@@ -51,6 +51,7 @@ public class AcaoDaoTest {
 	}	
 	
 	@Test
+	@Ignore
 	public void maxRetornoTest(){
 		System.out.println("valor retorno maximo");
 		
@@ -73,6 +74,7 @@ public class AcaoDaoTest {
 	}	
 	
 	@Test
+	@Ignore
 	public void volumeMedioTest(){
 		System.out.println("volume medio");
 		

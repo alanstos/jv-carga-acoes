@@ -1,7 +1,6 @@
-package br.com.jv.carga.acoes;
+package br.com.jv.carga.acoes.service;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import br.com.jv.carga.acoes.dao.AcaoDao;
@@ -11,10 +10,6 @@ import br.com.jv.carga.acoes.model.AcaoCsv;
 public class CargaService {
 	
 	private AcaoDao dao = new AcaoDao();
-
-	public static void main(String[] args) throws IOException {
-		new CargaService().carga();
-	}
 
 	public void carga() throws FileNotFoundException {
 		
@@ -31,15 +26,14 @@ public class CargaService {
 			double fechamentoAnterior = fechamentoAnteriorAcao(csv, csvAnterior);			
 			
 			acao.setValorAbertura(fechamentoAnterior);
-			acao.setValorRetorno( retorno.executa(acao.getValorFechamento(), acao.getValorAbertura()).doubleValue() );
-			System.out.println(acao);
+			acao.setValorRetorno( retorno.calcula(acao.getValorFechamento(), acao.getValorAbertura()).doubleValue() );
 			
 			dao.insere(acao);
 		}
 		
 		System.out.println("carga realizada com sucesso");
 		
-		imprimirResultado();
+		imprimirRelatorio();
 	}
 	
 
@@ -54,7 +48,8 @@ public class CargaService {
 		return fechamentoAnterior;
 	}
 	
-	private void imprimirResultado(){
+	private void imprimirRelatorio(){
+		System.out.println("Imprimindo relatorio:");
 		
 		imprime( dao.findFechamentoMaximo(), "fechamento maximo" );
 		
