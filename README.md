@@ -11,6 +11,9 @@ CREATE TABLE `carga-acoes`.`acao` (
   `volume` DOUBLE NULL,
   PRIMARY KEY (`id`));
   
+# Rodar
+- br.com.jv.carga.acoes.main.Main.java
+  
 # Resultado
 
 
